@@ -47,7 +47,7 @@ class Test2:
             assert driver.current_url == online, 'Неверный url в адресной строке'
 
             click_on_elm(By.NAME, 'item-contacts')
-            click_on_elm(By.NAME, 'headTitle')
+            click_on_elm(By.CSS_SELECTOR, '[name="contacts"] [data-qa="Контакты"]')
 
             assert driver.current_url == contacts_url, 'Неверный url в адресной строке'
 
@@ -55,11 +55,8 @@ class Test2:
 
             # sleep(2)
             def presence_of_two_elements(drv):
-                elements = drv.find_elements(By.CSS_SELECTOR,
-                                             '[class="controls-Field js-controls-Field controls-InputBase__nativeField '
-                                             'controls-Search__nativeField_caretEmpty '
-                                             'controls-Search__nativeField_caretEmpty_theme_default   '
-                                             'controls-InputBase__nativeField_hideCustomPlaceholder"]')
+                elements = drv.find_elements(By.CLASS_NAME,
+                                             'controls-Search__nativeField_caretEmpty')
                 if len(elements) == 2:
                     return elements
                 else:
