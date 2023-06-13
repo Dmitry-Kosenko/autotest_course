@@ -40,6 +40,8 @@ class Test3:
             url = download_lnk.get_attribute('href')
             filename = Path(url).name
             request.urlretrieve(url, filename)
+            file_size = os.path.getsize(filename) / 1024 ** 2
+            print(f'Размер файла {filename}: {round(file_size, 3)} МБ')
 
             assert os.path.exists(filename), f'Файл {filename} не скачан!'
         finally:
